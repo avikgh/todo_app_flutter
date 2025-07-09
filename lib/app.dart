@@ -10,11 +10,6 @@ class TodoApp extends StatelessWidget {
       title: 'ToDo',
       debugShowCheckedModeBanner: false,
       home: TodoListScreen(),
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom()
-        )
-      ),
     );
   }
 }

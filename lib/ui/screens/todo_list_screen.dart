@@ -1,61 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/entities/todo.dart';
 import 'package:todo_app/ui/screens/add_new_todo_screen.dart';
+import 'package:todo_app/ui/screens/tabs/all_todo_list_tab.dart';
+import 'package:todo_app/ui/screens/tabs/done_todo_list_tab.dart';
+import 'package:todo_app/ui/screens/tabs/undone_todo_list_tab.dart';
+import 'package:todo_app/ui/widgets/todo_item.dart';
 
-class TodoListScreen extends StatelessWidget {
+class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
 
   @override
+  State<TodoListScreen> createState() => _TodoListScreenState();
+}
+
+class _TodoListScreenState extends State<TodoListScreen> {
+  List<Todo> _todoList = [];
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Todo List',
-          style: TextStyle(fontSize: 25),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Todo List',
+            style: TextStyle(fontSize: 25),
+          ),
+          bottom: TabBar(
+            tabs: [
+              Text('All'),
+              Text('Done'),
+              Text('Undone')
+            ],
+          ),
         ),
-      ),
-      body: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return Card(
-            elevation: 4,
-            margin: EdgeInsets.symmetric(vertical: 4, horizontal: 20),
-            child: ListTile(
-              title: Text(
-                'Title',
-                style: TextStyle(decoration: _buildTitleDecoration(false)),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text('Description'), Text('Time')],
-              ),
-              trailing: _buildRoundedIconButton(),
-            ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddNewTodoScreen()));
-        },
-        tooltip: 'Add new todo',
-        label: Text('Add'),
-        icon: Icon(Icons.add),
+        body: TabBarView(
+          children: [
+            AllTodoListTab(),
+            DoneTodoListTab(),
+            UndoneTodoListTab()
+          ],
+        ),
+        floatingActionButton: _addTodoFABButton(),
       ),
     );
   }
+}
 
-  Widget _buildRoundedIconButton() {
-    return CircleAvatar(
-      child: _buildIcon(true),
+class _addTodoFABButton extends StatelessWidget {
+  const _addTodoFABButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton.extended(
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AddNewTodoScreen()));
+      },
+      tooltip: 'Add new todo',
+      label: Text('Add'),
+      icon: Icon(Icons.add),
     );
-  }
-
-  Icon _buildIcon(bool isDone) {
-    return isDone ? Icon(Icons.check) : Icon(Icons.clear);
-  }
-
-  TextDecoration? _buildTitleDecoration(bool isDone) {
-    return isDone ? TextDecoration.lineThrough : null;
   }
 }

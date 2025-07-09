@@ -5,7 +5,6 @@ class AddNewTodoScreen extends StatelessWidget {
 
   final TextEditingController _titleTEController = TextEditingController();
   final TextEditingController _descriptionTEController = TextEditingController();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -21,6 +20,7 @@ class AddNewTodoScreen extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _titleTEController,
                 decoration: InputDecoration(
                   label: Text('Title')
@@ -29,6 +29,7 @@ class AddNewTodoScreen extends StatelessWidget {
               ),
               SizedBox(height: 10,),
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _descriptionTEController,
                 maxLength: 200,
                 decoration: InputDecoration(
@@ -42,7 +43,9 @@ class AddNewTodoScreen extends StatelessWidget {
                 width: double.maxFinite,
                 child: ElevatedButton(
                   onPressed: () {
-
+                    if(_formKey.currentState!.validate()) {
+                      Navigator.pop(context);
+                    }
                   },
                   child: Text('Add New Todo', style: TextStyle(
                     fontSize: 18
@@ -57,7 +60,7 @@ class AddNewTodoScreen extends StatelessWidget {
   }
 
   String? _isValidate(String? value) {
-    if(value!.isEmpty ?? true) {
+    if(value!.trim().isEmpty ?? true) {
       return 'Enter a title';
     }
     return null;
