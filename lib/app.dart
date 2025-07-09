@@ -29,6 +29,9 @@ class TodoApp extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(color: Colors.green.shade200)
         ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: Colors.green.shade200
       )
     );
   }
