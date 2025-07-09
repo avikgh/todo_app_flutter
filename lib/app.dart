@@ -10,6 +10,26 @@ class TodoApp extends StatelessWidget {
       title: 'ToDo',
       debugShowCheckedModeBanner: false,
       home: TodoListScreen(),
+      theme: _lightTheme(),
+    );
+  }
+
+  ThemeData _lightTheme() {
+    return ThemeData(
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.green.shade200)
+        ),
+        disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.green.shade200)
+        ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.green.shade200)
+        ),
+      )
     );
   }
 }

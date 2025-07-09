@@ -4,7 +4,6 @@ import 'package:todo_app/ui/screens/add_new_todo_screen.dart';
 import 'package:todo_app/ui/screens/tabs/all_todo_list_tab.dart';
 import 'package:todo_app/ui/screens/tabs/done_todo_list_tab.dart';
 import 'package:todo_app/ui/screens/tabs/undone_todo_list_tab.dart';
-import 'package:todo_app/ui/widgets/todo_item.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
