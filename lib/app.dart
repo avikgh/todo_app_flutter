@@ -32,6 +32,11 @@ class TodoApp extends StatelessWidget {
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: Colors.green.shade200
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green.shade200
+        )
       )
     );
   }
