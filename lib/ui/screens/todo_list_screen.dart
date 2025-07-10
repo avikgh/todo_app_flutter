@@ -37,13 +37,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
               ),
               Text(
                 'Done',
-                style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 15,
-                ),
+                style: TextStyle(color: Colors.green, fontSize: 15,),
               ),
               Text(
-                'Undone',
+                'Pending',
                 style: TextStyle(color: Colors.red, fontSize: 15),
               )
             ],
@@ -56,16 +53,24 @@ class _TodoListScreenState extends State<TodoListScreen> {
               onDeleteTodo: _deleteTodo,
               onChangeStatus: _changeStatus,
             ),
-            DoneTodoListTab(),
-            UndoneTodoListTab()
+            DoneTodoListTab(
+              todoList: _todoList.where((item) => item.isDone == true).toList(),
+              onDeleteTodo: _deleteTodo,
+              onStatusChange: _changeStatus,
+            ),
+            UndoneTodoListTab(
+              todoList: _todoList.where((item) => item.isDone == false).toList(),
+              onDeleteTodo: _deleteTodo,
+              onStatusChange: _changeStatus,
+            )
           ],
         ),
-        floatingActionButton: buildFloatingActionButton(context)
+        floatingActionButton: _buildFloatingActionButton(context)
       )
     );
   }
 
-  FloatingActionButton buildFloatingActionButton(BuildContext context) {
+  FloatingActionButton _buildFloatingActionButton(BuildContext context) {
     return FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
@@ -98,7 +103,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   void _changeStatus(int index) {
-    _todoList[index].isDone = !_todoList[index].isDone;
+    _todoList[index].isDone = !(_todoList[index].isDone);
     if (mounted) {
       setState(() {});
     }

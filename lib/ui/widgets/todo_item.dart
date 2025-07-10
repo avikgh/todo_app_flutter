@@ -6,23 +6,23 @@ class TodoItem extends StatelessWidget {
       {super.key, required this.todo, required this.onTapStatusChangeButton});
 
   final Todo todo;
-  final VoidCallback onTapStatusChangeButton;
+  final Function() onTapStatusChangeButton;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 20),
-      color: Colors.green.shade200,
-      surfaceTintColor: _buildSurfaceTintColor(false),
+      // color: Colors.green.shade200,
+      surfaceTintColor: _buildSurfaceTintColor(todo.isDone),
       child: ListTile(
         title: Text(
-          '${todo.title}',
+          todo.title,
           style: TextStyle(decoration: _buildTitleDecoration(todo.isDone)),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Text('${todo.description}'), Text('${todo.time}')],
+          children: [Text(todo.description), Text('${todo.time}')],
         ),
         trailing: _buildRoundedIconButton(),
       ),
@@ -36,9 +36,10 @@ class TodoItem extends StatelessWidget {
   Widget _buildRoundedIconButton() {
     return GestureDetector(
       onTap: () {
-        onTapStatusChangeButton;
+        onTapStatusChangeButton();
       },
       child: CircleAvatar(
+        backgroundColor: Colors.white,
         child: _buildIcon(todo.isDone),
       ),
     );
@@ -47,16 +48,16 @@ class TodoItem extends StatelessWidget {
   Icon _buildIcon(bool isDone) {
     return isDone
         ? Icon(
-            Icons.check,
-            color: Colors.green.shade200,
-          )
-        : Icon(
             Icons.clear,
             color: Colors.red.shade400,
+          )
+        : Icon(
+            Icons.check,
+            color: Colors.green.shade200,
           );
   }
 
-  Color? _buildSurfaceTintColor(bool isDone) {
-    return isDone ? Colors.green : null;
+  Color _buildSurfaceTintColor(bool isDone) {
+    return isDone ? Colors.green: Colors.red;
   }
 }

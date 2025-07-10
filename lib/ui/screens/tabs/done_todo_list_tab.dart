@@ -4,23 +4,30 @@ import '../../../entities/todo.dart';
 import '../../widgets/todo_item.dart';
 
 class DoneTodoListTab extends StatelessWidget {
-  const DoneTodoListTab({super.key});
+  const DoneTodoListTab(
+      {super.key,
+      required this.todoList,
+      required this.onDeleteTodo,
+      required this.onStatusChange});
+
+  final List<Todo> todoList;
+  final Function(int) onDeleteTodo;
+  final Function(int) onStatusChange;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: todoList.length,
       itemBuilder: (context, index) {
         return Dismissible(
           key: UniqueKey(),
+          onDismissed: (_) {
+            onDeleteTodo(index);
+          },
           child: TodoItem(
-            todo: Todo(
-              'Title will be here',
-              'Description will be here',
-              DateTime.now(),
-            ),
+            todo: todoList[index],
             onTapStatusChangeButton: () {
-
+              onStatusChange(index);
             },
           ),
         );
