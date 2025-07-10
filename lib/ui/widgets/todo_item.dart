@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/entities/todo.dart';
 
 class TodoItem extends StatelessWidget {
-  const TodoItem({super.key, required this.todo});
+  const TodoItem(
+      {super.key, required this.todo, required this.onTapStatusChangeButton});
 
   final Todo todo;
+  final VoidCallback onTapStatusChangeButton;
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +16,13 @@ class TodoItem extends StatelessWidget {
       color: Colors.green.shade200,
       surfaceTintColor: _buildSurfaceTintColor(false),
       child: ListTile(
-        title: Text('${todo.title}',style: TextStyle(
-            decoration: _buildTitleDecoration(todo.isDone)
-          ),
+        title: Text(
+          '${todo.title}',
+          style: TextStyle(decoration: _buildTitleDecoration(todo.isDone)),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('${todo.description}'),
-            Text('${todo.time}')
-          ],
+          children: [Text('${todo.description}'), Text('${todo.time}')],
         ),
         trailing: _buildRoundedIconButton(),
       ),
@@ -35,15 +34,28 @@ class TodoItem extends StatelessWidget {
   }
 
   Widget _buildRoundedIconButton() {
-    return CircleAvatar(
-      child: _buildIcon(todo.isDone),
+    return GestureDetector(
+      onTap: () {
+        onTapStatusChangeButton;
+      },
+      child: CircleAvatar(
+        child: _buildIcon(todo.isDone),
+      ),
     );
   }
 
   Icon _buildIcon(bool isDone) {
-    return isDone ? Icon(Icons.check) : Icon(Icons.clear);
+    return isDone
+        ? Icon(
+            Icons.check,
+            color: Colors.green.shade200,
+          )
+        : Icon(
+            Icons.clear,
+            color: Colors.red.shade400,
+          );
   }
-  
+
   Color? _buildSurfaceTintColor(bool isDone) {
     return isDone ? Colors.green : null;
   }

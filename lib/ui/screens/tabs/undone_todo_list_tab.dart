@@ -17,8 +17,11 @@ class UndoneTodoListTab extends StatelessWidget {
             todo: Todo(
               'Title will be here',
               'Description will be here',
-              DateTime.now().toString(),
+              DateTime.now(),
             ),
+            onTapStatusChangeButton: () {
+
+            },
           ),
         );
       },

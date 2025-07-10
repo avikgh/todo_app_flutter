@@ -17,9 +17,16 @@ class TodoApp extends StatelessWidget {
   ThemeData _lightTheme() {
     return ThemeData(
       inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyle(
+          color: Colors.green.shade600
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: Colors.green.shade200)
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.green.shade200)
         ),
         disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -27,17 +34,19 @@ class TodoApp extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.green.shade200)
+            borderSide: BorderSide(color: Colors.green.shade200, width: 2),
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.green.shade200
+        backgroundColor: Colors.green.shade200,
+        foregroundColor: Colors.black54
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green.shade200
+          backgroundColor: Colors.green.shade200,
+          foregroundColor: Colors.black54
         )
-      )
+      ),
     );
   }
 }
