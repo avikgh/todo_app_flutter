@@ -18,33 +18,34 @@ class TodoApp extends StatelessWidget {
     return ThemeData(
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: TextStyle(
-          color: Colors.green.shade600
+          color: Color(0xFF0EC7B7),
+          fontWeight: FontWeight.bold
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.green.shade200)
+          borderRadius: BorderRadius.circular(60),
+          borderSide: BorderSide(color: Color(0xFF0EC7B7))
         ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.green.shade200)
+            borderRadius: BorderRadius.circular(60),
+            borderSide: BorderSide(color: Color(0xFF0EC7B7))
         ),
         disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.green.shade200)
+            borderRadius: BorderRadius.circular(60),
+            borderSide: BorderSide(color: Color(0xFF0EC7B7))
         ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.green.shade200, width: 2),
+            borderRadius: BorderRadius.circular(60),
+            borderSide: BorderSide(color: Color(0xFF0EC7B7), width: 2),
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.green.shade200,
-        foregroundColor: Colors.black54
+        backgroundColor: Color(0xFF0EC7B7),
+        foregroundColor: Colors.white
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green.shade200,
-          foregroundColor: Colors.black54
+          backgroundColor: Color(0xFF0EC7B7),
+          foregroundColor: Colors.white
         )
       ),
     );

@@ -3,5 +3,5 @@ class Todo {
   String description;
   DateTime time;
   bool isDone;
-  Todo(this.title, this.description, this.time, [this.isDone = true]);
+  Todo(this.title, this.description, this.time, [this.isDone = false]);
 }

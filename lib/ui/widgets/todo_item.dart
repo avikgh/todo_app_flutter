@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_app/entities/todo.dart';
 
 class TodoItem extends StatelessWidget {
@@ -22,7 +23,10 @@ class TodoItem extends StatelessWidget {
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Text(todo.description), Text('${todo.time}')],
+          children: [
+            Text(todo.description),
+            Text('${DateFormat.yMEd().add_jms().format(todo.time)}')
+          ],
         ),
         trailing: _buildRoundedIconButton(),
       ),
@@ -58,6 +62,6 @@ class TodoItem extends StatelessWidget {
   }
 
   Color _buildSurfaceTintColor(bool isDone) {
-    return isDone ? Colors.green: Colors.red;
+    return isDone ? Colors.green : Colors.red;
   }
 }

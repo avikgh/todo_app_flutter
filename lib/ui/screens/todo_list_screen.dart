@@ -26,23 +26,25 @@ class _TodoListScreenState extends State<TodoListScreen> {
           backgroundColor: Colors.white,
           title: Text(
             'Todo List',
-            style: TextStyle(fontSize: 25),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           ),
           centerTitle: true,
           bottom: TabBar(
+            indicatorAnimation: TabIndicatorAnimation.elastic,
+            indicatorColor: Color(0xFF0EC7B7),
             tabs: [
               Text(
                 'All',
-                style: TextStyle(color: Colors.black, fontSize: 15),
+                style: TextStyle(color: Color(0xFF0EC7B7), fontSize: 15),
+              ),
+              Text(
+                'Pending',
+                style: TextStyle(color: Colors.red, fontSize: 15),
               ),
               Text(
                 'Done',
                 style: TextStyle(color: Colors.green, fontSize: 15,),
               ),
-              Text(
-                'Pending',
-                style: TextStyle(color: Colors.red, fontSize: 15),
-              )
             ],
           ),
         ),
@@ -53,16 +55,16 @@ class _TodoListScreenState extends State<TodoListScreen> {
               onDeleteTodo: _deleteTodo,
               onChangeStatus: _changeStatus,
             ),
+            UndoneTodoListTab(
+              todoList: _todoList.where((item) => item.isDone == false).toList(),
+              onDeleteTodo: _deleteTodo,
+              onStatusChange: _changeStatus,
+            ),
             DoneTodoListTab(
               todoList: _todoList.where((item) => item.isDone == true).toList(),
               onDeleteTodo: _deleteTodo,
               onStatusChange: _changeStatus,
             ),
-            UndoneTodoListTab(
-              todoList: _todoList.where((item) => item.isDone == false).toList(),
-              onDeleteTodo: _deleteTodo,
-              onStatusChange: _changeStatus,
-            )
           ],
         ),
         floatingActionButton: _buildFloatingActionButton(context)
